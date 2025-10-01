@@ -7,7 +7,7 @@ httpx
 fastapi~=0.115.6
 gunicorn
 uvicorn
-starlette~=0.41.3
+starlette~=0.47.2
 pydantic~=2.10.4
 apexdevkit
 coverage
