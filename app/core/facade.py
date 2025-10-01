@@ -22,6 +22,7 @@ class PWPSCore:
     def create_exercise(self, request: CreateExerciseRequest) -> CreateExerciseResponse:
         exercise = self.exercise_interactor.execute_create(
             name=request.name,
+            exercise_code=request.exercise_code,
             description=request.description,
             instruction=request.instruction,
             target_muscle=request.target_muscle
@@ -36,6 +37,7 @@ class PWPSCore:
         exercise = self.exercise_interactor.execute_get_one(exercise_id=exercise_id)
         return GetOneExerciseResponse(
             name=exercise.name,
+            exercise_code=exercise.exercise_code,
             description=exercise.description,
             instruction=exercise.instruction,
             target_muscle=exercise.target_muscle

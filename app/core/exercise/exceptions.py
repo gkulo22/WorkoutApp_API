@@ -12,8 +12,8 @@ class GetExerciseException(Exception):
 
 @dataclass
 class ExerciseCreationException(Exception):
-    barcode: str
+    exercise_code: int
     message: str = field(init=False)
 
     def __post_init__(self) -> None:
-        self.message = f"Exercise with barcode: {self.barcode} already exists."
+        self.message = f"Exercise with code: {self.exercise_code} already exists."

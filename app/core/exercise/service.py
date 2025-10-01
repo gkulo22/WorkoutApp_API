@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import List
 
-from app.core.exercise.exceptions import GetExerciseException
+from app.core.exercise.exceptions import GetExerciseException, ExerciseCreationException
 from app.core.exercise.models import Exercise
 from app.core.exercise.repository import IExerciseRepository
 
@@ -11,6 +11,8 @@ class ExerciseService:
     exercise_repository: IExerciseRepository
 
     def create_exercise(self, exercise: Exercise) -> Exercise:
+        if self.exercise_repository.has_code(exercise_code=exercise.exercise_code):
+            raise ExerciseCreationException(exercise_code=exercise.exercise_code)
         exercise = self.exercise_repository.create(exercise=exercise)
         return exercise
 

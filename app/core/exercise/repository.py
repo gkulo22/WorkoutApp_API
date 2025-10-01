@@ -12,3 +12,6 @@ class IExerciseRepository(Protocol):
 
     def get_all(self) -> List[Exercise]:
         pass
+
+    def has_code(self, exercise_code: int) -> bool:
+        pass

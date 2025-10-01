@@ -23,6 +23,9 @@ class ExerciseInMemoryRepository(IExerciseRepository):
     def get_all(self) -> List[Exercise]:
         return list(self._store.values())
 
+    def has_code(self, exercise_code: int) -> bool:
+        return any(exercise.exercise_code == exercise_code for exercise in self._store.values())
+
 
 @dataclass
 class InMemoryRepoFactory(RepoFactory):

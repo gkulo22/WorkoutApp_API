@@ -18,6 +18,7 @@ exercise_api = APIRouter()
 
 class ExerciseBase(BaseModel):
     name: str
+    exercise_code: int
     description: str
     instruction: str
     target_muscle: str

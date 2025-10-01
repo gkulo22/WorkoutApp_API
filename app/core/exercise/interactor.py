@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import List
 
 from app.core import NO_ID
+from app.core.exercise import Muscle
 from app.core.exercise.models import Exercise
 from app.core.exercise.service import ExerciseService
 
@@ -12,12 +13,14 @@ class ExerciseInteractor:
 
     def execute_create(self,
                        name: str,
+                       exercise_code: int,
                        description: str,
                        instruction: str,
-                       target_muscle: str) -> Exercise:
+                       target_muscle: Muscle) -> Exercise:
 
         exercise = Exercise(id=NO_ID,
                             name=name,
+                            exercise_code=exercise_code,
                             description=description,
                             instruction=instruction,
                             target_muscle=target_muscle)
