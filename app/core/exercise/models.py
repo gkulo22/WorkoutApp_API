@@ -9,18 +9,18 @@ class Exercise:
     id: str
     name: str
     exercise_code: int
-    description: str
-    instruction: str
     target_muscle: Muscle
+    description: str = ""
+    instruction: str = ""
 
 
 
 @dataclass
 class StrengthExercise:
     id: str
-    sets: int
-    reps: int
-    weight: float
+    sets: Optional[int] = None
+    reps: Optional[int] = None
+    weight: Optional[float] = None
 
 
 @dataclass

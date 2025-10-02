@@ -5,7 +5,6 @@ from fastapi.params import Depends
 from pydantic import BaseModel
 
 from app.core.exercise.exceptions import GetExerciseException, ExerciseCreationException
-from app.core.exercise.models import Exercise
 from app.core.exercise.schemas import GetOneExerciseResponse, GetAllExercisesResponse, CreateExerciseResponse, \
     CreateExerciseRequest
 from app.core.facade import PWPSCore
@@ -19,12 +18,12 @@ exercise_api = APIRouter()
 class ExerciseBase(BaseModel):
     name: str
     exercise_code: int
-    description: str
-    instruction: str
     target_muscle: str
+    description: str = ""
+    instruction: str = ""
 
 
-@exercise_api.post('/',
+@exercise_api.post("",
                    status_code=HTTPStatus.CREATED,
                    response_model=CreateExerciseResponse)
 def create_exercise(request: ExerciseBase,
@@ -34,7 +33,7 @@ def create_exercise(request: ExerciseBase,
     except ExerciseCreationException as exc:
         raise HTTPException(status_code=HTTPStatus.CONFLICT, detail=exc.message)
 
-@exercise_api.get('/{exercise_id}',
+@exercise_api.get("/{exercise_id}",
                   status_code=HTTPStatus.OK,
                   response_model=GetOneExerciseResponse)
 def get_one_exercise(exercise_id: str,
@@ -44,7 +43,7 @@ def get_one_exercise(exercise_id: str,
     except GetExerciseException as exc:
         raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail=exc.message)
 
-@exercise_api.get('/',
+@exercise_api.get("",
                   status_code=HTTPStatus.OK,
                   response_model=GetAllExercisesResponse)
 def get_exercises(core: PWPSCore = Depends(get_core)) -> GetAllExercisesResponse:

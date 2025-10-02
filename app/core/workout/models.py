@@ -9,4 +9,4 @@ class WorkoutPlan:
     id: str
     name: str
     exercises: List[ExerciseForWorkoutPlan]
-    goal_description: str
+    goal_description: str = ""
