@@ -65,11 +65,21 @@ class PWPSCore:
             goal_description=request.goal_description
         )
 
-        return CreateWorkoutPlanResponse(workout_plan=workout_plan)
+        return CreateWorkoutPlanResponse(
+            id=workout_plan.id,
+            name=workout_plan.name,
+            exercises=workout_plan.exercises,
+            goal_description=workout_plan.goal_description
+        )
 
     def get_one_workout_plan(self, workout_plan_id: str) -> GetOneWorkoutPlanResponse:
         workout_plan = self.workout_plan_interactor.execute_get_one(workout_plan_id=workout_plan_id)
-        return GetOneWorkoutPlanResponse(workout_plan=workout_plan)
+        return GetOneWorkoutPlanResponse(
+            id=workout_plan.id,
+            name=workout_plan.name,
+            exercises=workout_plan.exercises,
+            goal_description=workout_plan.goal_description
+        )
 
     def add_strength_exercise_in_workout_plan(
             self,
@@ -84,7 +94,12 @@ class PWPSCore:
             weight=request.weight,
         )
 
-        return AddExerciseInWorkoutPlanResponse(workout_plan=workout_plan)
+        return AddExerciseInWorkoutPlanResponse(
+            id=workout_plan.id,
+            name=workout_plan.name,
+            exercises=workout_plan.exercises,
+            goal_description=workout_plan.goal_description
+        )
 
     def add_cardio_exercise_in_workout_plan(
             self,
@@ -99,7 +114,12 @@ class PWPSCore:
             calories=request.calories,
         )
 
-        return AddExerciseInWorkoutPlanResponse(workout_plan=workout_plan)
+        return AddExerciseInWorkoutPlanResponse(
+            id=workout_plan.id,
+            name=workout_plan.name,
+            exercises=workout_plan.exercises,
+            goal_description=workout_plan.goal_description
+        )
 
     def delete_workout_plan(self, workout_plan_id: str) -> None:
         self.workout_plan_interactor.execute_delete(workout_plan_id=workout_plan_id)

@@ -34,14 +34,14 @@ class AddCardioExerciseInWorkoutPlanRequest(BaseModel):
 class AddExerciseInWorkoutPlanResponse(BaseModel):
     id: str
     name: str
-    items: List[ExerciseForWorkoutPlan]
+    exercises: List[ExerciseForWorkoutPlan]
     goal_description: str
 
 
 class GetOneWorkoutPlanResponse(BaseModel):
     id: str
     name: str
-    items: List[ExerciseForWorkoutPlan]
+    exercises: List[ExerciseForWorkoutPlan]
     goal_description: str
 
 

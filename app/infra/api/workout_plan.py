@@ -42,7 +42,7 @@ def get_workout_plan(workout_plan_id: str, core: PWPSCore = Depends(get_core)) -
 
 
 class StrengthExerciseBase(BaseModel):
-    id: str
+    exercise_id: str
     sets: Optional[int] = None
     reps: Optional[int] = None
     weight: Optional[float] = None
@@ -50,7 +50,7 @@ class StrengthExerciseBase(BaseModel):
 
 @workout_plan_api.post("/{workout_plan_id}/strength_exercise",
                        status_code=HTTPStatus.CREATED,
-                       response_model=AddStrengthExerciseInWorkoutPlanRequest)
+                       response_model=AddExerciseInWorkoutPlanResponse)
 def add_strength_exercise_in_workout_plan(
         workout_plan_id: str,
         strength_exercise: StrengthExerciseBase,
@@ -65,12 +65,14 @@ def add_strength_exercise_in_workout_plan(
         raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail=exc.message)
     except GetExerciseException as exc:
         raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail=exc.message)
+    except ValueError as e:
+        raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail=str(e))
 
 
 
 
 class CardioExerciseBase(BaseModel):
-    id: str
+    exercise_id: str
     duration: Optional[float] = None
     distance: Optional[float] = None
     calories: Optional[float] = None
@@ -78,21 +80,12 @@ class CardioExerciseBase(BaseModel):
 
 @workout_plan_api.post("/{workout_plan_id}/cardio_exercise",
                        status_code=HTTPStatus.CREATED,
-                       response_model=AddCardioExerciseInWorkoutPlanRequest)
+                       response_model=AddExerciseInWorkoutPlanResponse)
 def add_cardio_exercise_in_workout_plan(
         workout_plan_id: str,
         cardio_exercise: CardioExerciseBase,
         core: PWPSCore = Depends(get_core)
 ) -> AddExerciseInWorkoutPlanResponse:
-    if cardio_exercise.duration is not None and cardio_exercise.duration < 1:
-        raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail="Invalid quantity")
-
-    if cardio_exercise.distance is not None and cardio_exercise.distance < 1:
-        raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail="Invalid quantity")
-
-    if cardio_exercise.calories is not None and cardio_exercise.calories < 1:
-        raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail="Invalid quantity")
-
     try:
         return core.add_cardio_exercise_in_workout_plan(
             workout_plan_id=workout_plan_id,
@@ -102,6 +95,8 @@ def add_cardio_exercise_in_workout_plan(
         raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail=exc.message)
     except GetExerciseException as exc:
         raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail=exc.message)
+    except ValueError as e:
+        raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail=str(e))
 
 
 
@@ -126,6 +121,8 @@ def delete_exercise_from_workout_plan(
             exercise_id=exercise_id
         )
     except GetWorkoutPlanException as exc:
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail=exc.message)
+    except GetExerciseException as exc:
         raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail=exc.message)
     except ExerciseNotFoundInWorkoutPlanException as exc:
         raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail=exc.message)

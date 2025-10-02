@@ -19,5 +19,5 @@ class IWorkoutPlanRepository(Protocol):
     def add_exercise(self, workout_plan: WorkoutPlan) -> WorkoutPlan:
         pass
 
-    def delete_exercise(self, workout_plan_id: str, exercise_id: str) -> None:
+    def delete_exercise(self, workout_plan: WorkoutPlan) -> None:
         pass

@@ -11,6 +11,10 @@ class StrengthExerciseBuilder:
         self._reps = None
         self._weight = None
 
+    def with_id(self, exercise_id: str):
+        self._id = exercise_id
+        return self
+
     def with_sets(self, sets: int):
         if sets is not None and sets <= 0:
             raise ValueError("sets must be greater than 0")
@@ -48,6 +52,10 @@ class CardioExerciseBuilder:
         self._duration: Optional[float] = None
         self._distance: Optional[float] = None
         self._calories: Optional[float] = None
+
+    def with_id(self, exercise_id: str):
+        self._id = exercise_id
+        return self
 
     def with_duration(self, duration: float):
         if duration is not None and duration <= 0:
@@ -88,6 +96,10 @@ class WorkoutPlanBuilder:
         self._name = "Unnamed"
         self._goal_description = ""
         self._exercises: List[ExerciseForWorkoutPlan] = []
+
+    def with_id(self, workout_plan_id: str):
+        self._id = workout_plan_id
+        return self
 
     def with_name(self, name: str):
         self._name = name

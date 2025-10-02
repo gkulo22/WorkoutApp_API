@@ -3,6 +3,8 @@ from typing import List
 
 from app.core import NO_ID
 from app.core.exercise.service import ExerciseService
+from app.core.workout.builder import WorkoutPlanBuilder
+from app.core.workout.handlers import StrengthExerciseHandler, CardioExerciseHandler
 from app.core.workout.models import WorkoutPlan
 from app.core.workout.service import WorkoutPlanService
 
@@ -14,11 +16,10 @@ class WorkoutPlanInteractor:
 
 
     def execute_create(self, name: str, goal_description: str) -> WorkoutPlan:
-        workout_plan = WorkoutPlan(
-            id=NO_ID,
-            name=name,
-            goal_description=goal_description,
-            exercises=[]
+        workout_plan = (
+            WorkoutPlanBuilder().with_name(name=name)
+                                .with_goal(description=goal_description)
+                                .build()
         )
         return self.workout_plan_service.create_workout_plan(workout_plan=workout_plan)
 
@@ -39,7 +40,21 @@ class WorkoutPlanInteractor:
             exercise_type: str,
             **kwargs
     ) -> WorkoutPlan:
-        pass
+        exercise = self.exercise_service.get_one_exercise(exercise_id=exercise_id)
+
+        strength_handler = StrengthExerciseHandler(next_handler=CardioExerciseHandler())
+        exercise_to_add = strength_handler.handle(
+            exercise_type=exercise_type,
+            exercise_id=exercise.id,
+            **kwargs
+        )
+
+        workout_plan = self.workout_plan_service.get_workout_plan(workout_plan_id=workout_plan_id)
+        return self.workout_plan_service.add_exercise_in_workout_plan(
+            workout_plan=workout_plan,
+            exercise=exercise_to_add
+        )
+
 
     def execute_delete_exercise_from_workout_plan(
             self,
@@ -47,9 +62,10 @@ class WorkoutPlanInteractor:
             exercise_id: str
     ) -> None:
         workout_plan = self.workout_plan_service.get_workout_plan(workout_plan_id=workout_plan_id)
+        exercise = self.exercise_service.get_one_exercise(exercise_id=exercise_id)
         self.workout_plan_service.delete_exercise_from_workout_plan(
-            workout_plan_id=workout_plan.id,
-            exercise_id=exercise_id
+            workout_plan=workout_plan,
+            exercise_id=exercise.id
         )
 
 
