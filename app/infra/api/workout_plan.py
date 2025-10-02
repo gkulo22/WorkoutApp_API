@@ -84,6 +84,15 @@ def add_cardio_exercise_in_workout_plan(
         cardio_exercise: CardioExerciseBase,
         core: PWPSCore = Depends(get_core)
 ) -> AddExerciseInWorkoutPlanResponse:
+    if cardio_exercise.duration is not None and cardio_exercise.duration < 1:
+        raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail="Invalid quantity")
+
+    if cardio_exercise.distance is not None and cardio_exercise.distance < 1:
+        raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail="Invalid quantity")
+
+    if cardio_exercise.calories is not None and cardio_exercise.calories < 1:
+        raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail="Invalid quantity")
+
     try:
         return core.add_cardio_exercise_in_workout_plan(
             workout_plan_id=workout_plan_id,

@@ -78,6 +78,7 @@ class PWPSCore:
         workout_plan = self.workout_plan_interactor.execute_add_exercise_in_workout_plan(
             workout_plan_id=workout_plan_id,
             exercise_id=request.exercise_id,
+            exercise_type="strength",
             sets=request.sets,
             reps=request.reps,
             weight=request.weight,
@@ -92,6 +93,7 @@ class PWPSCore:
         workout_plan = self.workout_plan_interactor.execute_add_exercise_in_workout_plan(
             workout_plan_id=workout_plan_id,
             exercise_id=request.exercise_id,
+            exercise_type="cardio",
             duration=request.duration,
             distance=request.distance,
             calories=request.calories,

@@ -14,7 +14,12 @@ class WorkoutPlanInteractor:
 
 
     def execute_create(self, name: str, goal_description: str) -> WorkoutPlan:
-        workout_plan = WorkoutPlan(id=NO_ID,name=name, goal_description=goal_description, exercises=[])
+        workout_plan = WorkoutPlan(
+            id=NO_ID,
+            name=name,
+            goal_description=goal_description,
+            exercises=[]
+        )
         return self.workout_plan_service.create_workout_plan(workout_plan=workout_plan)
 
     def execute_get_one(self, workout_plan_id: str) -> WorkoutPlan:
@@ -31,6 +36,7 @@ class WorkoutPlanInteractor:
             self,
             workout_plan_id: str,
             exercise_id: str,
+            exercise_type: str,
             **kwargs
     ) -> WorkoutPlan:
         pass
