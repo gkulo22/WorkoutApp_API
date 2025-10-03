@@ -1,12 +1,11 @@
 from dataclasses import dataclass
 from typing import List
 
-from app.core import NO_ID
 from app.core.exercise.service import ExerciseService
-from app.core.workout.builder import WorkoutPlanBuilder
-from app.core.workout.handlers import StrengthExerciseHandler, CardioExerciseHandler
-from app.core.workout.models import WorkoutPlan
-from app.core.workout.service import WorkoutPlanService
+from app.core.workout_plan.builder import WorkoutPlanBuilder
+from app.core.workout_plan.handlers import StrengthExerciseHandler, CardioExerciseHandler
+from app.core.workout_plan.models import WorkoutPlan
+from app.core.workout_plan.service import WorkoutPlanService
 
 
 @dataclass

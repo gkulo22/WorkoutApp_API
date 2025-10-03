@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  api:
+    build: .
+    container_name: workoutapp_api
+    environment:
+      - DB_PATH=/data/workout_app.db
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+      - type: volume
+        source: workout_data
+        target: /data
+    ports:
+      - "8000:8000"
+    command: uvicorn app.runner.asgi:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+
+volumes:
+  workout_data:
+

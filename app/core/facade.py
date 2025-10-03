@@ -10,11 +10,11 @@ from app.core.user.interactor import UserInteractor
 from app.core.user.models import User
 from app.core.user.schemas import CreateUserRequest
 from app.core.user.service import UserService
-from app.core.workout.interactor import WorkoutPlanInteractor
-from app.core.workout.schemas import CreateWorkoutPlanRequest, CreateWorkoutPlanResponse, GetOneWorkoutPlanResponse, \
+from app.core.workout_plan.interactor import WorkoutPlanInteractor
+from app.core.workout_plan.schemas import CreateWorkoutPlanRequest, CreateWorkoutPlanResponse, GetOneWorkoutPlanResponse, \
     AddExerciseInWorkoutPlanResponse, AddCardioExerciseInWorkoutPlanRequest, \
     AddStrengthExerciseInWorkoutPlanRequest, GetAllWorkoutPlansResponse
-from app.core.workout.service import WorkoutPlanService
+from app.core.workout_plan.service import WorkoutPlanService
 
 
 @dataclass

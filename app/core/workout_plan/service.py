@@ -2,10 +2,10 @@ from dataclasses import dataclass
 from typing import List
 
 from app.core import ExerciseForWorkoutPlan
-from app.core.workout.builder import WorkoutPlanBuilder
-from app.core.workout.exceptions import GetWorkoutPlanException, ExerciseNotFoundInWorkoutPlanException
-from app.core.workout.models import WorkoutPlan
-from app.core.workout.repository import IWorkoutPlanRepository
+from app.core.workout_plan.builder import WorkoutPlanBuilder
+from app.core.workout_plan.exceptions import GetWorkoutPlanException, ExerciseNotFoundInWorkoutPlanException
+from app.core.workout_plan.models import WorkoutPlan
+from app.core.workout_plan.repository import IWorkoutPlanRepository
 
 
 @dataclass

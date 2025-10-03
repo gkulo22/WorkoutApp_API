@@ -1,6 +1,6 @@
 from typing import Protocol, Optional, List
 
-from app.core.workout.models import WorkoutPlan
+from app.core.workout_plan.models import WorkoutPlan
 
 
 class IWorkoutPlanRepository(Protocol):

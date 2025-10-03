@@ -2,7 +2,7 @@ from typing import Protocol
 
 from app.core.exercise.repository import IExerciseRepository
 from app.core.user.repository import IUserRepository
-from app.core.workout.repository import IWorkoutPlanRepository
+from app.core.workout_plan.repository import IWorkoutPlanRepository
 
 
 class RepoFactory(Protocol):

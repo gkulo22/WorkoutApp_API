@@ -7,8 +7,8 @@ from pydantic import BaseModel
 from app.core.exercise.exceptions import GetExerciseException
 from app.core.facade import PWPSCore
 from app.core.user.models import User
-from app.core.workout.exceptions import GetWorkoutPlanException, ExerciseNotFoundInWorkoutPlanException
-from app.core.workout.schemas import CreateWorkoutPlanResponse, CreateWorkoutPlanRequest, GetOneWorkoutPlanResponse, \
+from app.core.workout_plan.exceptions import GetWorkoutPlanException, ExerciseNotFoundInWorkoutPlanException
+from app.core.workout_plan.schemas import CreateWorkoutPlanResponse, CreateWorkoutPlanRequest, GetOneWorkoutPlanResponse, \
     AddExerciseInWorkoutPlanResponse, AddCardioExerciseInWorkoutPlanRequest, AddStrengthExerciseInWorkoutPlanRequest, \
     GetAllWorkoutPlansResponse
 from app.infra.auth import get_current_user
@@ -67,6 +67,11 @@ def get_all_workout_plans(
     return core.get_all_workout_plans(user_id=user.id)
 
 
+
+@workout_plan_api.patch("/{workout_plan_id}", status_code=200)
+def change_privacy_status(workout_plan_id: str,
+                  core: PWPSCore = Depends(get_core)) -> None:
+    pass
 
 
 

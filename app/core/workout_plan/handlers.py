@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from app.core import ExerciseForWorkoutPlan, StrengthExercise, CardioExercise
-from app.core.workout.builder import StrengthExerciseBuilder, CardioExerciseBuilder
+from app.core.workout_plan.builder import StrengthExerciseBuilder, CardioExerciseBuilder
 
 
 class ExerciseHandler(ABC):

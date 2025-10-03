@@ -2,7 +2,7 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 from app.core import ExerciseForWorkoutPlan
-from app.core.workout.models import WorkoutPlan
+from app.core.workout_plan.models import WorkoutPlan
 
 
 class CreateWorkoutPlanRequest(BaseModel):

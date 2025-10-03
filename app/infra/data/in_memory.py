@@ -7,8 +7,8 @@ from app.core.exercise.repository import IExerciseRepository
 from app.core.factories.repo_factory import RepoFactory
 from app.core.user.models import User
 from app.core.user.repository import IUserRepository
-from app.core.workout.models import WorkoutPlan
-from app.core.workout.repository import IWorkoutPlanRepository
+from app.core.workout_plan.models import WorkoutPlan
+from app.core.workout_plan.repository import IWorkoutPlanRepository
 
 
 
