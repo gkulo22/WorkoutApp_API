@@ -1,17 +1,26 @@
 from http import HTTPStatus
-from typing import Optional, Annotated
+from typing import Annotated, Optional
 
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.core.exercise.exceptions import GetExerciseException
 from app.core.facade import PWPSCore
 from app.core.user.models import User
-from app.core.workout_plan.exceptions import GetWorkoutPlanException, ExerciseNotFoundInWorkoutPlanException
-from app.core.workout_plan.schemas import CreateWorkoutPlanResponse, CreateWorkoutPlanRequest, \
-    GetOneWorkoutPlanResponse, \
-    AddExerciseInWorkoutPlanResponse, AddCardioExerciseInWorkoutPlanRequest, AddStrengthExerciseInWorkoutPlanRequest, \
-    GetAllWorkoutPlansResponse, UpdateWorkoutPlanStatusRequest
+from app.core.workout_plan.exceptions import (
+    ExerciseNotFoundInWorkoutPlanException,
+    GetWorkoutPlanException,
+)
+from app.core.workout_plan.schemas import (
+    AddCardioExerciseInWorkoutPlanRequest,
+    AddExerciseInWorkoutPlanResponse,
+    AddStrengthExerciseInWorkoutPlanRequest,
+    CreateWorkoutPlanRequest,
+    CreateWorkoutPlanResponse,
+    GetAllWorkoutPlansResponse,
+    GetOneWorkoutPlanResponse,
+    UpdateWorkoutPlanStatusRequest,
+)
 from app.infra.auth import get_current_user
 from app.infra.dependables import get_core
 

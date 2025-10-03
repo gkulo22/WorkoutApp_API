@@ -1,4 +1,4 @@
-from typing import Protocol, Optional, List
+from typing import List, Optional, Protocol
 
 from app.core.workout_plan.models import WorkoutPlan
 

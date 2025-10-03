@@ -1,17 +1,16 @@
 import sqlite3
 import uuid
 from dataclasses import dataclass
-from typing import Optional, List
+from typing import List, Optional
 
 from app.core.exercise import Muscle
-from app.core.exercise.models import Exercise, StrengthExercise, CardioExercise
+from app.core.exercise.models import CardioExercise, Exercise, StrengthExercise
 from app.core.exercise.repository import IExerciseRepository
 from app.core.factories.repo_factory import RepoFactory
 from app.core.user.models import User
 from app.core.user.repository import IUserRepository
 from app.core.workout_plan.models import WorkoutPlan
 from app.core.workout_plan.repository import IWorkoutPlanRepository
-
 
 
 @dataclass

@@ -10,7 +10,6 @@ from app.infra.api.exercise import exercise_api
 from app.infra.api.tracking import tracking_api
 from app.infra.api.workout_plan import workout_plan_api
 from app.infra.api.workout_session import workout_session_api
-from app.infra.data.in_memory import InMemoryRepoFactory
 from app.infra.data.sqlite import SqliteRepoFactory
 from app.infra.scripts.seeder import seed_exercises
 

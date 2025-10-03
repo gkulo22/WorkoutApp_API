@@ -3,7 +3,10 @@ from typing import List
 
 from app.core.exercise.service import ExerciseService
 from app.core.workout_plan.builder import WorkoutPlanBuilder
-from app.core.workout_plan.handlers import StrengthExerciseHandler, CardioExerciseHandler
+from app.core.workout_plan.handlers import (
+    CardioExerciseHandler,
+    StrengthExerciseHandler,
+)
 from app.core.workout_plan.models import WorkoutPlan
 from app.core.workout_plan.service import WorkoutPlanService
 

@@ -1,15 +1,17 @@
 from http import HTTPStatus
 
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from app.core.exercise.exceptions import GetExerciseException, ExerciseCreationException
-from app.core.exercise.schemas import GetOneExerciseResponse, GetAllExercisesResponse, CreateExerciseResponse, \
-    CreateExerciseRequest
+from app.core.exercise.exceptions import ExerciseCreationException, GetExerciseException
+from app.core.exercise.schemas import (
+    CreateExerciseRequest,
+    CreateExerciseResponse,
+    GetAllExercisesResponse,
+    GetOneExerciseResponse,
+)
 from app.core.facade import PWPSCore
 from app.infra.dependables import get_core
-
-
 
 exercise_api = APIRouter()
 

@@ -1,6 +1,6 @@
 import uuid
 from dataclasses import dataclass, field
-from typing import Dict, Optional, List
+from typing import Dict, List, Optional
 
 from app.core.exercise.models import Exercise
 from app.core.exercise.repository import IExerciseRepository
@@ -9,7 +9,6 @@ from app.core.user.models import User
 from app.core.user.repository import IUserRepository
 from app.core.workout_plan.models import WorkoutPlan
 from app.core.workout_plan.repository import IWorkoutPlanRepository
-
 
 
 @dataclass

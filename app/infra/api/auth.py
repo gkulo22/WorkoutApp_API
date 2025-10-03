@@ -8,7 +8,7 @@ from pydantic import BaseModel
 
 from app.core.facade import PWPSCore
 from app.core.user.schemas import CreateUserRequest
-from app.infra.auth import bcrypt_context, authenticate_user, create_access_token
+from app.infra.auth import authenticate_user, bcrypt_context, create_access_token
 from app.infra.dependables import get_core
 
 auth_api = APIRouter()

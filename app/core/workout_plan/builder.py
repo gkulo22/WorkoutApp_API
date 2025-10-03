@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from app.core import StrengthExercise, CardioExercise, ExerciseForWorkoutPlan, NO_ID
+from app.core import NO_ID, CardioExercise, ExerciseForWorkoutPlan, StrengthExercise
 from app.core.workout_plan.models import WorkoutPlan
 
 

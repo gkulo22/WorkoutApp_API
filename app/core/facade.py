@@ -2,25 +2,48 @@ from dataclasses import dataclass
 from typing import Optional
 
 from app.core.exercise.interactor import ExerciseInteractor
-from app.core.exercise.schemas import CreateExerciseRequest, CreateExerciseResponse, GetAllExercisesResponse, \
-    GetOneExerciseResponse
+from app.core.exercise.schemas import (
+    CreateExerciseRequest,
+    CreateExerciseResponse,
+    GetAllExercisesResponse,
+    GetOneExerciseResponse,
+)
 from app.core.exercise.service import ExerciseService
 from app.core.factories.repo_factory import RepoFactory
-from app.core.tracking.schemas import GetAllWeightEntriesResponse, WeightEntryRequest, WeightEntryResponse, \
-    GetFitnessGoalsResponse, FitnessGoalResponse, CreateFitnessGoalRequest, UpdateFitnessGoalRequest, \
-    UpdateFitnessGoalStatusRequest, GetAchievementsResponse, GetSummeryResponse
+from app.core.tracking.schemas import (
+    CreateFitnessGoalRequest,
+    FitnessGoalResponse,
+    GetAchievementsResponse,
+    GetAllWeightEntriesResponse,
+    GetFitnessGoalsResponse,
+    GetSummeryResponse,
+    UpdateFitnessGoalRequest,
+    UpdateFitnessGoalStatusRequest,
+    WeightEntryRequest,
+    WeightEntryResponse,
+)
 from app.core.user.interactor import UserInteractor
 from app.core.user.models import User
 from app.core.user.schemas import CreateUserRequest
 from app.core.user.service import UserService
 from app.core.workout_plan.interactor import WorkoutPlanInteractor
-from app.core.workout_plan.schemas import CreateWorkoutPlanRequest, CreateWorkoutPlanResponse, \
-    GetOneWorkoutPlanResponse, \
-    AddExerciseInWorkoutPlanResponse, AddCardioExerciseInWorkoutPlanRequest, \
-    AddStrengthExerciseInWorkoutPlanRequest, GetAllWorkoutPlansResponse, UpdateWorkoutPlanStatusRequest
+from app.core.workout_plan.schemas import (
+    AddCardioExerciseInWorkoutPlanRequest,
+    AddExerciseInWorkoutPlanResponse,
+    AddStrengthExerciseInWorkoutPlanRequest,
+    CreateWorkoutPlanRequest,
+    CreateWorkoutPlanResponse,
+    GetAllWorkoutPlansResponse,
+    GetOneWorkoutPlanResponse,
+    UpdateWorkoutPlanStatusRequest,
+)
 from app.core.workout_plan.service import WorkoutPlanService
-from app.core.workout_session.schemas import CreateWorkoutSessionResponse, WorkoutSessionResponse, \
-    WorkoutSessionProgressRequest, WorkoutSessionProgressResponse
+from app.core.workout_session.schemas import (
+    CreateWorkoutSessionResponse,
+    WorkoutSessionProgressRequest,
+    WorkoutSessionProgressResponse,
+    WorkoutSessionResponse,
+)
 
 
 @dataclass

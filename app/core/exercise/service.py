@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import List
 
-from app.core.exercise.exceptions import GetExerciseException, ExerciseCreationException
+from app.core.exercise.exceptions import ExerciseCreationException, GetExerciseException
 from app.core.exercise.models import Exercise
 from app.core.exercise.repository import IExerciseRepository
 

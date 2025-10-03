@@ -6,9 +6,18 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
 from app.core.facade import PWPSCore
-from app.core.tracking.schemas import GetAllWeightEntriesResponse, WeightEntryResponse, WeightEntryRequest, \
-    GetFitnessGoalsResponse, FitnessGoalResponse, CreateFitnessGoalRequest, UpdateFitnessGoalRequest, \
-    UpdateFitnessGoalStatusRequest, GetSummeryResponse, GetAchievementsResponse
+from app.core.tracking.schemas import (
+    CreateFitnessGoalRequest,
+    FitnessGoalResponse,
+    GetAchievementsResponse,
+    GetAllWeightEntriesResponse,
+    GetFitnessGoalsResponse,
+    GetSummeryResponse,
+    UpdateFitnessGoalRequest,
+    UpdateFitnessGoalStatusRequest,
+    WeightEntryRequest,
+    WeightEntryResponse,
+)
 from app.core.user.models import User
 from app.infra.auth import get_current_user
 from app.infra.dependables import get_core

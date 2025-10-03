@@ -3,7 +3,10 @@ from typing import List
 
 from app.core import ExerciseForWorkoutPlan
 from app.core.workout_plan.builder import WorkoutPlanBuilder
-from app.core.workout_plan.exceptions import GetWorkoutPlanException, ExerciseNotFoundInWorkoutPlanException
+from app.core.workout_plan.exceptions import (
+    ExerciseNotFoundInWorkoutPlanException,
+    GetWorkoutPlanException,
+)
 from app.core.workout_plan.models import WorkoutPlan
 from app.core.workout_plan.repository import IWorkoutPlanRepository
 

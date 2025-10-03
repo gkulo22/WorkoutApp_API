@@ -1,9 +1,9 @@
-from datetime import timedelta, datetime
-from typing import Optional, Annotated
+from datetime import datetime, timedelta
+from typing import Annotated, Optional
 
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
-from jose import jwt, JWTError
+from jose import JWTError, jwt
 from passlib.context import CryptContext
 from starlette import status
 

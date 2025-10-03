@@ -6,8 +6,12 @@ from pydantic import BaseModel
 
 from app.core.facade import PWPSCore
 from app.core.user.models import User
-from app.core.workout_session.schemas import CreateWorkoutSessionResponse, WorkoutSessionResponse, \
-    WorkoutSessionProgressRequest, WorkoutSessionProgressResponse
+from app.core.workout_session.schemas import (
+    CreateWorkoutSessionResponse,
+    WorkoutSessionProgressRequest,
+    WorkoutSessionProgressResponse,
+    WorkoutSessionResponse,
+)
 from app.infra.auth import get_current_user
 from app.infra.dependables import get_core
 
