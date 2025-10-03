@@ -93,12 +93,17 @@ class CardioExerciseBuilder:
 class WorkoutPlanBuilder:
     def __init__(self):
         self._id = NO_ID
+        self._author_id = NO_ID
         self._name = "Unnamed"
         self._goal_description = ""
         self._exercises: List[ExerciseForWorkoutPlan] = []
 
     def with_id(self, workout_plan_id: str):
         self._id = workout_plan_id
+        return self
+
+    def with_author(self, author_id: str):
+        self._author_id = author_id
         return self
 
     def with_name(self, name: str):
@@ -116,6 +121,7 @@ class WorkoutPlanBuilder:
     def build(self) -> WorkoutPlan:
         return WorkoutPlan(
             id=self._id,
+            author_id=self._author_id,
             name=self._name,
             exercises=self._exercises,
             goal_description=self._goal_description,

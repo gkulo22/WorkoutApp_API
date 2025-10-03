@@ -10,7 +10,7 @@ class IWorkoutPlanRepository(Protocol):
     def get_one(self, workout_plan_id: str) -> Optional[WorkoutPlan]:
         pass
 
-    def get_all(self) -> List[WorkoutPlan]:
+    def get_all(self, author_id: str) -> List[WorkoutPlan]:
         pass
 
     def delete(self, workout_plan_id: str) -> None:

@@ -5,8 +5,30 @@ from typing import Dict, Optional, List
 from app.core.exercise.models import Exercise
 from app.core.exercise.repository import IExerciseRepository
 from app.core.factories.repo_factory import RepoFactory
+from app.core.user.models import User
+from app.core.user.repository import IUserRepository
 from app.core.workout.models import WorkoutPlan
 from app.core.workout.repository import IWorkoutPlanRepository
+
+
+
+@dataclass
+class UserInMemoryRepository:
+    _store: Dict[str, User] = field(default_factory=dict)
+
+    def create(self, user: User) -> User:
+        user_id = str(uuid.uuid4())
+        setattr(user, 'id', user_id)
+        self._store[user.id] = user
+        return user
+
+    def get_user(self, username: str) -> Optional[User]:
+        for user in self._store.values():
+            if user.username == username:
+                return user
+
+    def username_exists(self, username: str) -> bool:
+        return any(user.username == username for user in self._store.values())
 
 
 @dataclass
@@ -43,8 +65,12 @@ class WorkoutPlanInMemoryRepository(IWorkoutPlanRepository):
     def get_one(self, workout_plan_id: str) -> Optional[WorkoutPlan]:
         return self._store.get(workout_plan_id)
 
-    def get_all(self) -> List[WorkoutPlan]:
-        return list(self._store.values())
+    def get_all(self, author_id: str) -> List[WorkoutPlan]:
+        needed_plans = []
+        for workout_plan in self._store.values():
+            if workout_plan.author_id == author_id:
+                needed_plans.append(workout_plan)
+        return needed_plans
 
     def delete(self, workout_plan_id: str) -> None:
         self._store.pop(workout_plan_id)
@@ -57,8 +83,16 @@ class WorkoutPlanInMemoryRepository(IWorkoutPlanRepository):
         self._store[workout_plan.id] = workout_plan
 
 
+
+
+
 @dataclass
 class InMemoryRepoFactory(RepoFactory):
+    _users: UserInMemoryRepository = field(
+        init=False,
+        default_factory=UserInMemoryRepository
+    )
+
     _exercises: ExerciseInMemoryRepository = field(
         init=False,
         default_factory=ExerciseInMemoryRepository
@@ -68,6 +102,9 @@ class InMemoryRepoFactory(RepoFactory):
         init=False,
         default_factory=WorkoutPlanInMemoryRepository
     )
+
+    def users(self) -> IUserRepository:
+        return self._users
 
     def exercises(self) -> IExerciseRepository:
         return self._exercises

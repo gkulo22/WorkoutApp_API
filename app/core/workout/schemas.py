@@ -46,6 +46,6 @@ class GetOneWorkoutPlanResponse(BaseModel):
 
 
 class GetAllWorkoutPlansResponse(BaseModel):
-    receipts: List[WorkoutPlan]
+    workout_plans: List[WorkoutPlan]
 
 

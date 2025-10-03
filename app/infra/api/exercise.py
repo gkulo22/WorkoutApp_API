@@ -1,7 +1,6 @@
 from http import HTTPStatus
 
-from fastapi import APIRouter, HTTPException
-from fastapi.params import Depends
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 
 from app.core.exercise.exceptions import GetExerciseException, ExerciseCreationException

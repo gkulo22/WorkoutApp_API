@@ -7,6 +7,7 @@ from app.core import ExerciseForWorkoutPlan
 @dataclass
 class WorkoutPlan:
     id: str
+    author_id: str
     name: str
     exercises: List[ExerciseForWorkoutPlan]
     goal_description: str = ""
