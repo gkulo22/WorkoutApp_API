@@ -6,15 +6,21 @@ from app.core.exercise.schemas import CreateExerciseRequest, CreateExerciseRespo
     GetOneExerciseResponse
 from app.core.exercise.service import ExerciseService
 from app.core.factories.repo_factory import RepoFactory
+from app.core.tracking.schemas import GetAllWeightEntriesResponse, WeightEntryRequest, WeightEntryResponse, \
+    GetFitnessGoalsResponse, FitnessGoalResponse, CreateFitnessGoalRequest, UpdateFitnessGoalRequest, \
+    UpdateFitnessGoalStatusRequest, GetAchievementsResponse, GetSummeryResponse
 from app.core.user.interactor import UserInteractor
 from app.core.user.models import User
 from app.core.user.schemas import CreateUserRequest
 from app.core.user.service import UserService
 from app.core.workout_plan.interactor import WorkoutPlanInteractor
-from app.core.workout_plan.schemas import CreateWorkoutPlanRequest, CreateWorkoutPlanResponse, GetOneWorkoutPlanResponse, \
+from app.core.workout_plan.schemas import CreateWorkoutPlanRequest, CreateWorkoutPlanResponse, \
+    GetOneWorkoutPlanResponse, \
     AddExerciseInWorkoutPlanResponse, AddCardioExerciseInWorkoutPlanRequest, \
-    AddStrengthExerciseInWorkoutPlanRequest, GetAllWorkoutPlansResponse
+    AddStrengthExerciseInWorkoutPlanRequest, GetAllWorkoutPlansResponse, UpdateWorkoutPlanStatusRequest
 from app.core.workout_plan.service import WorkoutPlanService
+from app.core.workout_session.schemas import CreateWorkoutSessionResponse, WorkoutSessionResponse, \
+    WorkoutSessionProgressRequest, WorkoutSessionProgressResponse
 
 
 @dataclass
@@ -118,6 +124,13 @@ class PWPSCore:
         workout_plans = self.workout_plan_interactor.execute_get_all(author_id=user_id)
         return GetAllWorkoutPlansResponse(workout_plans=workout_plans)
 
+    def change_privacy_status(
+            self,
+            workout_plan_id: str,
+            request: UpdateWorkoutPlanStatusRequest
+    ) -> None:
+        pass
+
     def add_strength_exercise_in_workout_plan(
             self,
             workout_plan_id: str,
@@ -179,3 +192,92 @@ class PWPSCore:
             author_id=user_id,
             exercise_id=exercise_id
         )
+
+
+    # Workout Sessions
+    def start_workout_session(self, workout_id: str, user_id: str) -> CreateWorkoutSessionResponse:
+        pass
+
+    def complete_workout_session(self, session_id: str, user_id: str) -> WorkoutSessionResponse:
+        pass
+
+    def get_workout_session(self, session_id: str, user_id: str) -> WorkoutSessionResponse:
+        pass
+
+    def update_exercise_progression(
+            self,
+            session_id: str,
+            user_id: str,
+            exercise_id: str,
+            request: WorkoutSessionProgressRequest
+    ) -> WorkoutSessionProgressResponse:
+        pass
+
+    def move_to_next_exercise(self, session_id: str, user_id: str) -> WorkoutSessionResponse:
+        pass
+
+
+    # Tracking and Goals
+    def get_weight_history(self, user_id: str) -> GetAllWeightEntriesResponse:
+        pass
+
+    def record_weight(
+            self,
+            user_id: str,
+            request: WeightEntryRequest
+    ) -> WeightEntryResponse:
+        pass
+
+    def get_latest_weight(self, user_id: str) -> WeightEntryResponse:
+        pass
+
+    def delete_weight(self, user_id: str, entry_id: str) -> None:
+        pass
+
+    def get_fitness_goals(self, user_id: str) -> GetFitnessGoalsResponse:
+        pass
+
+    def create_fitness_goals(
+            self,
+            user_id: str,
+            request: CreateFitnessGoalRequest
+    ) -> FitnessGoalResponse:
+        pass
+
+    def update_fitness_goal(
+            self,
+            goal_id: str,
+            user_id: str,
+            request: UpdateFitnessGoalRequest
+    ) -> FitnessGoalResponse:
+        pass
+
+    def delete_fitness_goals(self, user_id: str, goal_id: str) -> None:
+        pass
+
+    def get_active_goals(self, user_id: str) -> GetFitnessGoalsResponse:
+        pass
+
+    def update_fitness_goal_status(
+            self,
+            goal_id: str,
+            request: UpdateFitnessGoalStatusRequest
+    ) -> None:
+        pass
+
+    def update_goal_progress(
+            self,
+            goal_id: str,
+            user_id: str,
+            current_value: float
+    ) -> FitnessGoalResponse:
+        pass
+
+    def get_fitness_achievements(self, user_id: str) -> GetAchievementsResponse:
+        pass
+
+    def get_user_fitness_summery(self, user_id: str) -> GetSummeryResponse:
+        pass
+
+
+

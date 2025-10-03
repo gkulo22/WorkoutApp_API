@@ -49,3 +49,7 @@ class GetAllWorkoutPlansResponse(BaseModel):
     workout_plans: List[WorkoutPlan]
 
 
+class UpdateWorkoutPlanStatusRequest(BaseModel):
+    status: bool
+
+

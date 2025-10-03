@@ -1,6 +1,6 @@
 ### WorkoutApp API
 
-A FastAPI-based API for managing users, exercises, and workout plans.
+A FastAPI-based API for managing users, exercises, workout plans, sessions, and tracking.
 
 ### Requirements
 - Python 3.11+
@@ -20,6 +20,21 @@ uvicorn app.runner.asgi:app --reload
 ```
 - The API will run at `http://127.0.0.1:8000`.
 - Open API docs at `http://127.0.0.1:8000/docs` (Swagger UI) or `http://127.0.0.1:8000/redoc`.
+- Detailed endpoint docs and curl examples: see `docs/API.md`.
+
+#### Auth quickstart
+1. Create a user
+```bash
+curl -X POST http://localhost:8000/auth -H "Content-Type: application/json" -d '{"username":"u","password":"p"}'
+```
+2. Get a token
+```bash
+curl -X POST http://localhost:8000/auth/token -H "Content-Type: application/x-www-form-urlencoded" -d "username=u&password=p"
+```
+3. Call a protected endpoint
+```bash
+TOKEN=...; curl -H "Authorization: Bearer $TOKEN" http://localhost:8000/workout_plan
+```
 
 #### Configuring SQLite database path
 - By default, the app uses `workout_app.db` in the working directory.
@@ -51,6 +66,9 @@ docker compose down
 
 - The API is available at `http://localhost:8000`.
 - Persistent SQLite data is stored in the named volume `workout_data`.
+
+### API Reference
+- Full API reference with request/response schemas and examples: `docs/API.md`
 
 ### Environment variables
 - `DB_PATH` (string): Filesystem path to SQLite DB file. Defaults to `workout_app.db`. In Docker, default is `/data/workout_app.db`.
